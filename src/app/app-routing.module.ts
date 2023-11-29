@@ -1,3 +1,5 @@
+
+// import { RechercheParTypeComponent } from './recherche-par-type/recherche-par-type.component';
 import { LoginComponent } from './login/login.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -6,8 +8,12 @@ import { UpdateReservationComponent } from './update-reservation/update-reservat
 import { AddReservationComponent } from './add-reservation/add-reservation.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { ReservationGuard } from './reservation.guard';
+import { RechercheParNomComponent } from './recherche-par-nom/recherche-par-nom.component';
+
 const routes: Routes = [
-  {path : "add-produit", component : AddReservationComponent, canActivate:[ReservationGuard]},
+  {path: "rechercheParNom", component : RechercheParNomComponent},
+  // {path: "rechercheParType", component : RechercheParTypeComponent},
+  {path : "add-reservation", component : AddReservationComponent, canActivate:[ReservationGuard]},
   {path: 'app-forbidden', component: ForbiddenComponent},
   {path: 'login', component: LoginComponent},
   {path: "updatereservation/:id", component: UpdateReservationComponent},

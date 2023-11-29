@@ -9,21 +9,20 @@ import { AuthService } from './services/auth.service';
 })
 export class AppComponent implements OnInit{
   title = 'reservation';
-  isloggedin!: string | null;
-  loggedUser!: string | null;
+  constructor(public authService: AuthService, private router: Router) {}
 
   ngOnInit() {
-    this.isloggedin = localStorage.getItem('isloggedIn');
-    this.loggedUser = localStorage.getItem('loggedUser');
+    let isloggedin!: string | null;
+    let loggedUser!: string | null;
+    isloggedin = localStorage.getItem('isloggedIn');
+    loggedUser = localStorage.getItem('loggedUser');
 
-    if (this.isloggedin !== "true" || !this.loggedUser) {
+    if (isloggedin !== "true" || !loggedUser) {
       this.router.navigate(['/login']);
     } else {
-      this.authService.setLoggedUserFromLocalStorage(this.loggedUser);
+      this.authService.setLoggedUserFromLocalStorage(loggedUser);
     }
   }
-
-  constructor(public authService: AuthService, private router: Router) {}
   onLogout() {
     this.authService.logout();
   }

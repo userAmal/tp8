@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { reservation } from './model/reservation.model';
 import { Router } from '@angular/router';
 import { Type } from './model/type.model';
+import { Observable,of } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +12,7 @@ export class ReservationService {
   reservations: reservation[];
   reservation! : reservation;
   types :Type[];
-  constructor(private router :Router,) {
+  constructor(private router :Router,private http: HttpClient) {
     this.types=[
       {idty : 1, typereservation : "en ligne"},
       {idty : 2, typereservation: "sur place"
@@ -74,6 +76,13 @@ listetypes():Type[] {
   consultertypes(id:number): Type{ 
   return this.types.find(ty => ty.idty == id)!;
   }
+
+  // recherchepartype(idty: number): reservation[] {
+  //   const filteredReservations = this.reservations.filter((reservation) => reservation.type.idty == idty);
+  //   return filteredReservations;
+  // }
+  
+  
 
     
 }
