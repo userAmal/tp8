@@ -3,7 +3,7 @@
     <div class="col-sm-4 col-md-4 col-lg-4 mb-4">
 
         <label>Types </label>
-        <select class="form-control form-control-lg" id="idty" name="idty" [(ngModel)]="idtype" (change)="onChange()">
+        <select class="form-control form-control-lg" id="idty" name="idty" [(ngModel)]="IdType" (change)="onChange()">
             <option *ngFor="let typ of types" value="{{typ.idty}}">
                 {{typ.typereservation}}
             </option>
@@ -22,17 +22,17 @@
                 </tr>
                 <tbody *ngFor="let reservation of reservations">
                     <tr>
-                        <td>{{reservation.numreservation}}</td>
+                        <td>{{reservation.idReservation}}</td>
                         <td>{{reservation.nomclient}}</td>
                         <td>{{reservation.prixsejour}}</td>
                         <td>{{reservation.datedebut | date:'dd/MM/yyyy'}}</td>
                         <td>{{reservation.datefin | date:'dd/MM/yyyy'}}</td>
-                        <td>{{reservation.type.typereservation}}</td>
-                        <td><a *ngIf="authService.isAdmin()" class="btn btn-danger"
+                        <td>{{reservation.type?.typereservation}}</td>
+                       <!--<td><a *ngIf="authService.isAdmin()" class="btn btn-danger"
                                 (click)="supprimerreservation(reservation)">Supprimer</a></td>
                         <td><a *ngIf="authService.isAdmin()" class="btn btn-success"
-                                [routerLink]="['/updatereservation',reservation.numreservation]">Modifier</a></td>
-                    </tr>
+                                [routerLink]="['/updatereservation',reservation.idReservation]">Modifier</a></td>
+                        --></tr>
                 </tbody>
             </table>
         </div>

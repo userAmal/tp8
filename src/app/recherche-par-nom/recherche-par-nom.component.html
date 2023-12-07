@@ -3,7 +3,7 @@
   <form class="form-inline">
     <div class="form-group mx-sm-3 mb-2 mt-2 ">
       <label>Nom client en tapant </label>
-      <input #nom="ngModel" [(ngModel)]="searchTerm" name="searchTerm" class="form-control">
+      <input #nom="ngModel" [(ngModel)]="searchTerm" name="searchTerm" class="form-control" placeholder="Search reservation">
 
     </div>
   </form>
@@ -27,7 +27,7 @@
           <td>{{reservation.prixsejour}}</td>
           <td>{{reservation.datedebut | date:'dd/MM/yyyy'}}</td>
             <td>{{reservation.datefin | date:'dd/MM/yyyy'}}</td>
-          <td>{{reservation.type.typereservation}}</td>
+          <td>{{reservation.type?.typereservation}}</td>
         </tr>
         </tbody>
       </table>

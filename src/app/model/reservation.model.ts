@@ -1,6 +1,6 @@
 import { Type } from "./type.model";
 export class reservation {
-    numreservation!: number;
+    idReservation!: number;
     nomclient!: string;
     prixsejour!: number;
     datedebut!: Date;

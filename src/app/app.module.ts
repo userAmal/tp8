@@ -34,8 +34,7 @@ import {RechercheParTypeComponent} from "./recherche-par-type/recherche-par-type
     AppRoutingModule,
     FormsModule
   ],
-  providers: [
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

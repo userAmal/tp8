@@ -1,15 +1,38 @@
-import {ReservationService} from '../reservation.service';
-import {reservation} from '../model/reservation.model';
+import { reservation } from './../model/reservation.model';
+import {ReservationService} from '../services/reservation.service';
 import {Component, OnInit} from '@angular/core';
 import {Type} from '../model/type.model'
-import {AuthService} from "../services/auth.service";
 
 @Component({
   selector: 'app-recherche-par-type',
   templateUrl: './recherche-par-type.component.html',
 })
 export class RechercheParTypeComponent implements OnInit {
-  idtype!: number;
+
+  IdType! : number;
+  types! : Type[];
+  reservations! : reservation[];
+
+
+  constructor(private reservationService : ReservationService) { }
+
+  ngOnInit(): void {
+    this.reservationService.listetypes().
+      subscribe(ty=> {this.types = ty._embedded.types;
+      console.log(ty);
+    });
+  }
+
+
+  onChange() {
+    if (this.IdType) {
+      this.reservationService.rechercherParType(this.IdType).subscribe((res) => {
+        console.log(res)
+        this.reservations = res;
+      });
+    }
+
+  /*  idtype!: number;
   reservations!: reservation[];
   types!: Type[]
 
@@ -31,6 +54,6 @@ export class RechercheParTypeComponent implements OnInit {
     let conf = confirm("Etes-vous sûr ?");
     if (conf)
       this.reservationservice.supprimerreservation(r);
-  }
+  }*/
 
-  }
+  }}

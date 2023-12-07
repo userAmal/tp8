@@ -1,5 +1,5 @@
 
-import { ReservationService } from '../reservation.service';
+import { ReservationService } from '../services/reservation.service';
 import { reservation } from './../model/reservation.model';
 import { Component } from '@angular/core';
 import { DatePipe } from '@angular/common';
@@ -13,8 +13,34 @@ import {AuthService} from "../services/auth.service";
   providers: [DatePipe]
 })
 export class RechercheParNomComponent {
+nomclient! : string;
+reservations!: reservation[];
+  allreservations!: reservation[];
+  searchTerm!: string;
+  
+  constructor(private reservationService : ReservationService) { }
 
-  searchTerm: string = '';
+  ngOnInit(): void {
+    this.reservationService.listeReservation().subscribe(res => {
+      console.log(res);
+      this.reservations = res;
+      });
+  }
+
+  rechercherres(){
+    this.reservationService.rechercherParNom(this.nomclient).
+    subscribe(res => {
+      console.log(res);
+      this.reservations=res;});
+  }
+
+  onKeyUp(filterText : string){
+    this.reservations = this.allreservations.filter(item =>
+    item.nomclient.toLowerCase().includes(filterText));
+    }
+    
+
+/*  searchTerm: string = '';
   reservations! : reservation[];
 
 
@@ -31,6 +57,6 @@ export class RechercheParNomComponent {
     let conf = confirm("Etes-vous sûr ?");
     if (conf)
       this.reservationservice.supprimerreservation(r);
-  }
+  }*/
 
 }
